@@ -7,14 +7,13 @@ from telegram.chataction import ChatAction
 from telegram import InlineKeyboardButton 
 from telegram import InlineKeyboardMarkup
 
+
 import confiq
-
-import os
-PORT = int(os.environ.get('PORT', 5000))
-
 
 updater = Updater(confiq.id)
 counter = 1
+
+satrt =False
 
 def start(bot, update):
     # import pdb;pdb.set_trace()
@@ -30,13 +29,17 @@ def start(bot, update):
 
     save(name,familyname)
 
-    
-def continues(bot,update):
-    time.sleep(1)
+    time.sleep(5)
     q1(bot,update)
 
+    
+def continues(bot,update):
+    chat_id = update.message.chat_id       
+
+    bot.sendMessage(chat_id,confiq.continuetext)
+           
 def q1(bot, update):    
-    chat_id = update.message.chat_id    
+    chat_id = update.message.chat_id   
     keyboard = [
                  [
                      InlineKeyboardButton('سلامتی',callback_data='1'),
@@ -50,6 +53,8 @@ def q1(bot, update):
 
     global counter
     counter +=1
+
+    
     
     bot.sendMessage(chat_id,'باشنیدن کلمه مراقبت یاد چی میفتی ؟',reply_markup = InlineKeyboardMarkup(keyboard) )    
 
@@ -66,7 +71,11 @@ def q1_handler_btn(bot, update):
 
     global counter
     flag = False
-    # counter += 1
+           
+
+    if counter == 1:
+        time.sleep(1)
+        q1(bot,chat_id)
 
     if counter == 2:
         q2(bot,query)
@@ -88,8 +97,7 @@ def q1_handler_btn(bot, update):
         flag = False
         time.sleep(3)        
         sendpodcast(bot,chat_id)
-        time.sleep(160) 
-        sendlinksite(bot,chat_id)
+        # time.sleep(160)        
         savelink(name,familyname)
     
 
@@ -97,7 +105,7 @@ def q2(bot, query):
     chat_id = query.message.chat_id    
     keyboard = [
                  [
-                    InlineKeyboardButton('بله',callback_data='1'),
+                    InlineKeyboardButton('بله',callback_data='0'),
                     InlineKeyboardButton('خیر',callback_data='2'),
                      
                  ]
@@ -153,15 +161,15 @@ def sendpodcast(bot, chat_id):
     # chat_id = update.message.chat_id
     chat_id = chat_id
     bot.send_chat_action(chat_id,ChatAction.UPLOAD_AUDIO)
-    audio=open('mp3/مراقبت ویژه.mp3', 'rb')
-    bot.send_audio(chat_id, audio)     
+    audio=open('mp3/مراقبت ویژه2.mp3', 'rb')
+    bot.send_audio(chat_id, audio, timeout=3000)     
     audio.close()
 
-    time.sleep(5)
+    time.sleep(120)
     sendlinksite(bot,chat_id)
 
 def sendimg1(bot, update):
-    chat_id = update.message.chat_id
+    chat_id = update.message.chat_id 
     bot.send_chat_action(chat_id,ChatAction.UPLOAD_PHOTO)
     img = open('img/1.jpg', 'rb')
     bot.sendPhoto(chat_id, img)
@@ -187,11 +195,11 @@ def sendlinksite(bot,chat_id):
     keyboard = [
                  [
                     
-                    InlineKeyboardButton('لینک','https://moraghebatevizhe-pelak12.fandogh.cloud/'),                                        
+                    InlineKeyboardButton('قول','https://moraghebatevizhe-pelak12.fandogh.cloud/'),                                        
                      
                  ]
                ]    
-    bot.sendMessage(chat_id,'کلیک کنید',reply_markup = InlineKeyboardMarkup(keyboard) )
+    bot.sendMessage(chat_id,'مراقبت ویژه',reply_markup = InlineKeyboardMarkup(keyboard) )
 def save(name, familyname):   
     op = open('doc/Login.txt','a+')    
     start = time.time()
@@ -340,11 +348,5 @@ updater.dispatcher.add_handler(q3_handler)
 updater.dispatcher.add_handler(img3_command)
 
 
-# updater.start_polling()
-
-updater.start_webhook(listen="0.0.0.0",
-                        port=int(PORT),
-                        url_path=updater)
-updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + updater)
-
+updater.start_polling()
 updater.idle()
