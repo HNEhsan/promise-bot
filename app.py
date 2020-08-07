@@ -156,7 +156,7 @@ def sendpodcast(bot, chat_id):
     # chat_id = update.message.chat_id
     chat_id = chat_id
     bot.send_chat_action(chat_id,ChatAction.UPLOAD_AUDIO)
-    audio=open('mp3/مراقبت ویژه2.mp3', 'rb')
+    audio=open('mp3/مراقبت ویژه.mp3', 'rb')
     bot.send_audio(chat_id, audio, timeout=3000)     
     audio.close()
 
