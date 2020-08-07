@@ -165,7 +165,7 @@ def sendpodcast(bot, chat_id):
     bot.send_audio(chat_id, audio, timeout=3000)     
     audio.close()
 
-    time.sleep(120)
+    time.sleep(5)
     sendlinksite(bot,chat_id)
 
 def sendimg1(bot, update):
@@ -199,7 +199,7 @@ def sendlinksite(bot,chat_id):
                      
                  ]
                ]    
-    bot.sendMessage(chat_id,'✨ آیا شما هم میخواید به پدر مهربونتون قول بدید؟\n👇👇👇',reply_markup = InlineKeyboardMarkup(keyboard) )
+    bot.sendMessage(chat_id,'🔻 قول و مراقبت ويژه🔻\n👇👇👇',reply_markup = InlineKeyboardMarkup(keyboard) )
 def save(name, familyname):   
     op = open('doc/Login.txt','a+')    
     start = time.time()
