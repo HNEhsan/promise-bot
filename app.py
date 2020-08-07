@@ -195,7 +195,7 @@ def sendlinksite(bot,chat_id):
     keyboard = [
                  [
                     
-                    InlineKeyboardButton('قول و مراقبت ویژه','https://moraghebatevizhe-pelak12.fandogh.cloud/'),                                        
+                    InlineKeyboardButton('🤝 قول‌ و‌ قرار🤝','https://moraghebatevizhe-pelak12.fandogh.cloud/'),                                        
                      
                  ]
                ]    
