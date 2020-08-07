@@ -199,7 +199,7 @@ def sendlinksite(bot,chat_id):
                      
                  ]
                ]    
-    bot.sendMessage(chat_id,'🔻 قول و مراقبت ويژه🔻\n👇👇👇',reply_markup = InlineKeyboardMarkup(keyboard) )
+    bot.sendMessage(chat_id,confiq.linkText,reply_markup = InlineKeyboardMarkup(keyboard) )
 def save(name, familyname):   
     op = open('doc/Login.txt','a+')    
     start = time.time()
