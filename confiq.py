@@ -1,4 +1,4 @@
-id = ''
+id = '1248094968:AAFIzrVrizi2kWlUMx7WiHccTdO7NT9NDv8'
 # Bot_name = "@MoraghebatVizhe_bot"
 
 continuetext = ''' هممون می‌دونیم که یه سری چیزا در زندگیمون نیاز به مراقبت ویژه دارن.
@@ -24,4 +24,4 @@ linkText = '''🎙لطفاً به #پادكست با دقت گوش بديد👆
 
 👇'''
 
-password = '33326384'
+password = ''

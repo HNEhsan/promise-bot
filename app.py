@@ -29,7 +29,7 @@ def start(bot, update):
 
     save(name,familyname)
 
-    time.sleep(5)
+   
     q1(bot,update)
 
     
@@ -73,10 +73,6 @@ def q1_handler_btn(bot, update):
     flag = False
            
 
-    if counter == 1:
-        time.sleep(1)
-        q1(bot,chat_id)
-
     if counter == 2:
         q2(bot,query)
         des = 'پیام شما ثبت شد با تشکر. \n'
@@ -94,8 +90,7 @@ def q1_handler_btn(bot, update):
     bot.editMessageText(text = des,chat_id = chat_id, message_id = message_id)
     
     if flag :
-        flag = False
-        time.sleep(3)        
+        flag = False               
         sendpodcast(bot,chat_id)
         # time.sleep(160)        
         savelink(name,familyname)
@@ -165,7 +160,7 @@ def sendpodcast(bot, chat_id):
     bot.send_audio(chat_id, audio, timeout=3000)     
     audio.close()
 
-    time.sleep(5)
+    
     sendlinksite(bot,chat_id)
 
 def sendimg1(bot, update):
