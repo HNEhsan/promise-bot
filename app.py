@@ -195,11 +195,11 @@ def sendlinksite(bot,chat_id):
     keyboard = [
                  [
                     
-                    InlineKeyboardButton('قول','https://moraghebatevizhe-pelak12.fandogh.cloud/'),                                        
+                    InlineKeyboardButton('قول و مراقبت ویژه','https://moraghebatevizhe-pelak12.fandogh.cloud/'),                                        
                      
                  ]
                ]    
-    bot.sendMessage(chat_id,'مراقبت ویژه',reply_markup = InlineKeyboardMarkup(keyboard) )
+    bot.sendMessage(chat_id,'✨ آیا شما هم میخواید به پدر مهربونتون قول بدید؟\n👇👇👇',reply_markup = InlineKeyboardMarkup(keyboard) )
 def save(name, familyname):   
     op = open('doc/Login.txt','a+')    
     start = time.time()
